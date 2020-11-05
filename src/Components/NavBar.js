@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import logoImg from '../images/logo.svg';
-import SighImg from '../images/sign.svg';
+import SignImg from '../images/sign.svg';
 
 const NavBarStyled = styled.header`
   position: fixed;
@@ -40,13 +40,13 @@ const Login = styled.button`
   display: flex;
   flex-direction: column;
   align-items: center;
-  cursor: pointer;
+  
   ::before {
   content: '';
   width: 32px;
   height: 32px;
   margin-bottom: 4px;
-  background: url(${SighImg});
+  background: url(${SignImg});
   }
 `;
 

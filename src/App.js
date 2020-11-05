@@ -53,6 +53,14 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
     margin: 0;
   }
+  
+  button {
+    cursor: pointer;
+  }
+  
+  input, button {
+   font-family: inherit;
+  }
 `
 
 function App() {
