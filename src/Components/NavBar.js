@@ -11,10 +11,10 @@ const NavBarStyled = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  width: 100vw;
+  width: 100%;
   height: 80px;
   padding: 15px;
-  background-color: #73419b;
+  background-color: #7332c8;
   color: white;
 `;
 
