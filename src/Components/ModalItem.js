@@ -29,13 +29,23 @@ const Banner = styled.div`
   background-image: url(${({ img }) => img});
   background-size: cover;
   background-position: center top;
-  margin-bottom: 20px;
 `;
 
-const ItemInfo = styled.h2`
+const Content = styled.section`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: calc(100% - 360px);
+  padding: 32px;
+`;
+
+const HeaderContent = styled.div`
  display: flex;
  justify-content: space-between;
- padding: 0 40px;
+ margin-bottom: 20px;
+ font-size: 24px;
+ font-family: Raleway, sans-serif;
+ font-weight: bold;
 `;
 
 const ModalItem = ({ openItem, setOpenItem }) => {
@@ -54,13 +64,15 @@ const ModalItem = ({ openItem, setOpenItem }) => {
     >
       <Modal>
         <Banner img={openItem.img}/>
-        <ItemInfo>
-          {openItem.name}
-          <span>{openItem.price.toLocaleString('en-En',
-            { style: 'currency', currency: 'USD' })}
-          </span>
-        </ItemInfo>
-        <Button>Add to Cart</Button>
+        <Content>
+          <HeaderContent>
+            <div>{openItem.name}</div>
+            <div>{openItem.price.toLocaleString('en-En',
+              { style: 'currency', currency: 'USD' })}
+            </div>
+          </HeaderContent>
+          <Button>Add to Cart</Button>
+        </Content>
       </Modal>
     </Overlay>
   );
