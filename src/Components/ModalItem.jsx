@@ -48,13 +48,20 @@ const HeaderContent = styled.div`
  font-weight: bold;
 `;
 
-const ModalItem = ({ openItem, setOpenItem }) => {
-  if (!openItem) return null;
-
-  function closeModal(e) {
+const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+  const closeModal = e => {
     if (e.target.id === 'overlay') {
       setOpenItem(null);
     }
+  }
+
+  const order = {
+    ...openItem
+  };
+
+  const addToOrder = () => {
+    setOrders([...orders, order]);
+    setOpenItem(null);
   }
 
   return (
@@ -71,7 +78,7 @@ const ModalItem = ({ openItem, setOpenItem }) => {
               { style: 'currency', currency: 'USD' })}
             </div>
           </HeaderContent>
-          <Button>Add to Cart</Button>
+          <Button onClick={addToOrder}>Add to Order</Button>
         </Content>
       </Modal>
     </Overlay>

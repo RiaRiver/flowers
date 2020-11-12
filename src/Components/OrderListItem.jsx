@@ -13,10 +13,9 @@ const ItemName = styled.span`
 
 const ItemPrice = styled.span`
   margin: 0 10px 0 20px ;
-  min-width: 100px;
+  min-width: 85px;
   text-align: right;
 `;
-
 
 const TrashButton = styled.button`
   width: 24px;
@@ -29,11 +28,11 @@ const TrashButton = styled.button`
   background-repeat: no-repeat;
 `;
 
-const OrderListItem = () => (
+const OrderListItem = ({ order }) => (
   <OrderItemStyled>
-    <ItemName>Name</ItemName>
+    <ItemName>{order.name}</ItemName>
     <span>2</span>
-    <ItemPrice>{(200).toLocaleString('en-En',
+    <ItemPrice>{order.price.toLocaleString('en-En',
       { style: 'currency', currency: 'USD' })}</ItemPrice>
     <TrashButton/>
   </OrderItemStyled>

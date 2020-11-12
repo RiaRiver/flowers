@@ -31,6 +31,10 @@ const OrderList = styled.ul`
 
 `;
 
+const EmptyList = styled.p`
+  text-align: center;
+`;
+
 const Total = styled.div`
   display: flex;
   margin-bottom: 30px;
@@ -41,20 +45,20 @@ const Total = styled.div`
 
 const TotalPrice = styled.span`
   margin: 0 34px 0 20px ;
-  min-width: 100px;
+  min-width: 85px;
   text-align: right;
 `;
 
-const Order = () => (
+const Order = ({ orders }) => (
   <>
     <OrderStyled>
       <OrderTitle>Your order</OrderTitle>
       <OrderContent>
-        <OrderList>
-          <OrderListItem/>
-          <OrderListItem/>
-          <OrderListItem/>
-        </OrderList>
+        {orders.length ?
+          <OrderList>
+            {orders.map((order) => <OrderListItem order={order}/>)}
+          </OrderList> :
+          <EmptyList>Order is empty.</EmptyList>}
       </OrderContent>
       <Total>
         <span>Total</span>
