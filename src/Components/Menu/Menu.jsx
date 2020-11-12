@@ -1,7 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import ListItem from "./ListItem";
-import dbCatalog from "./DBCatalog";
+import dbCatalog from "../DBCatalog";
 
 const SectionMenu = styled.section`
   padding: 30px;
