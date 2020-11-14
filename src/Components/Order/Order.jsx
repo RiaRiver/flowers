@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Button from "../Interface/Button";
 import OrderListItem from "./OrderListItem";
+import { formatCurrencyUSD, getItemTotalPrice } from "../Functions/supportingFunctions";
 
 const OrderStyled = styled.section`
   position: fixed;
@@ -49,26 +50,25 @@ const TotalPrice = styled.span`
   text-align: right;
 `;
 
-const Order = ({ orders }) => (
-  <>
-    <OrderStyled>
-      <OrderTitle>Your order</OrderTitle>
-      <OrderContent>
-        {orders.length ?
-          <OrderList>
-            {orders.map((order) => <OrderListItem order={order}/>)}
-          </OrderList> :
-          <EmptyList>Order is empty.</EmptyList>}
-      </OrderContent>
-      <Total>
-        <span>Total</span>
-        <span>5</span>
-        <TotalPrice>{(525).toLocaleString('en-En',
-          { style: 'currency', currency: 'USD' })}</TotalPrice>
-      </Total>
-      <Button>Make an order</Button>
-    </OrderStyled>
-  </>
-);
+const Order = ({ orders }) => {
+  const total = orders.reduce((result, order) =>
+    result + getItemTotalPrice(order), 0)
+  return (<OrderStyled>
+    <OrderTitle>Your order</OrderTitle>
+    <OrderContent>
+      {orders.length ?
+        <OrderList>
+          {orders.map((order) => <OrderListItem order={order}/>)}
+        </OrderList> :
+        <EmptyList>Order is empty.</EmptyList>}
+    </OrderContent>
+    <Total>
+      <span>Total</span>
+      <span>5</span>
+      <TotalPrice>{formatCurrencyUSD(total)}</TotalPrice>
+    </Total>
+    <Button>Make an order</Button>
+  </OrderStyled>)
+};
 
 export default Order;

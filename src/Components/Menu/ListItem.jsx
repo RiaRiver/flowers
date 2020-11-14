@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { formatCurrencyUSD } from "../Functions/supportingFunctions";
 
 const List = styled.ul`
   display: flex;
@@ -49,8 +50,7 @@ const ListItem = ({ itemList, setOpenItem }) => (
             onClick={() => setOpenItem(item)}
       >
         <p>{item.name}</p>
-        <p>{item.price.toLocaleString('en-En',
-          { style: 'currency', currency: 'USD' })}
+        <p>{formatCurrencyUSD(item.price)}
         </p>
       </Item>
     ))}

@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import ListItem from "./ListItem";
 import dbCatalog from "../DBCatalog";
 
-const SectionMenu = styled.section`
+const MenuSection = styled.section`
   padding: 30px;
 `;
 
@@ -24,20 +24,20 @@ const Banner = styled.div`
 const Menu = ({ setOpenItem }) => (
   <MenuStyled>
     <Banner/>
-    <SectionMenu>
+    <MenuSection>
       <h2>Mono Bouquet</h2>
       <ListItem
         itemList={dbCatalog.monobouquet}
         setOpenItem={setOpenItem}
       />
-    </SectionMenu>
-    <SectionMenu>
+    </MenuSection>
+    <MenuSection>
       <h2>Bouquet</h2>
       <ListItem
         itemList={dbCatalog.bouquet}
         setOpenItem={setOpenItem}
       />
-    </SectionMenu>
+    </MenuSection>
   </MenuStyled>
 );
 

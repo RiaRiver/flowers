@@ -1,6 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 import Button from "../Interface/Button";
+import CountItem from "./CountItem";
+import useCount from "../Hooks/useCount";
+import { getItemTotalPrice } from "../Functions/supportingFunctions";
+import {formatCurrencyUSD} from "../Functions/supportingFunctions";
 
 const Overlay = styled.div`
   position: fixed;
@@ -39,7 +43,7 @@ const Content = styled.section`
   padding: 32px;
 `;
 
-const HeaderContent = styled.div`
+const ContentHeader = styled.div`
  display: flex;
  justify-content: space-between;
  margin-bottom: 20px;
@@ -48,7 +52,14 @@ const HeaderContent = styled.div`
  font-weight: bold;
 `;
 
+const TotalPriceItem = styled.div`
+  display: flex;
+  justify-content: space-between;
+`;
+
 const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
+  const counter = useCount();
+
   const closeModal = e => {
     if (e.target.id === 'overlay') {
       setOpenItem(null);
@@ -56,7 +67,8 @@ const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
   }
 
   const order = {
-    ...openItem
+    ...openItem,
+    count: counter.count
   };
 
   const addToOrder = () => {
@@ -72,12 +84,15 @@ const ModalItem = ({ openItem, setOpenItem, orders, setOrders }) => {
       <Modal>
         <Banner img={openItem.img}/>
         <Content>
-          <HeaderContent>
+          <ContentHeader>
             <div>{openItem.name}</div>
-            <div>{openItem.price.toLocaleString('en-En',
-              { style: 'currency', currency: 'USD' })}
-            </div>
-          </HeaderContent>
+            <div>{formatCurrencyUSD(openItem.price)}</div>
+          </ContentHeader>
+          <CountItem {...counter}/>
+          <TotalPriceItem>
+            <span>Price:</span>
+            <span>{formatCurrencyUSD(getItemTotalPrice(order))}</span>
+          </TotalPriceItem>
           <Button onClick={addToOrder}>Add to Order</Button>
         </Content>
       </Modal>
